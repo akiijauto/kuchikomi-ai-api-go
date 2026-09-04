@@ -9,9 +9,9 @@ import (
 	"time"
 	"unicode/utf8"
 
-	"github.com/akiijauto/kuchikomi-ai-multi-stack/api-go/internal/auth"
-	"github.com/akiijauto/kuchikomi-ai-multi-stack/api-go/internal/reply"
-	"github.com/akiijauto/kuchikomi-ai-multi-stack/api-go/internal/store"
+	"github.com/akiijauto/kuchikomi-ai-api-go/internal/auth"
+	"github.com/akiijauto/kuchikomi-ai-api-go/internal/reply"
+	"github.com/akiijauto/kuchikomi-ai-api-go/internal/store"
 )
 
 // handleHealth は死活監視。Next.js版・Rails版と同じく、認証基盤にもDBにも依存させない。

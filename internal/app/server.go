@@ -11,9 +11,9 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/akiijauto/kuchikomi-ai-multi-stack/api-go/internal/auth"
-	"github.com/akiijauto/kuchikomi-ai-multi-stack/api-go/internal/reply"
-	"github.com/akiijauto/kuchikomi-ai-multi-stack/api-go/internal/store"
+	"github.com/akiijauto/kuchikomi-ai-api-go/internal/auth"
+	"github.com/akiijauto/kuchikomi-ai-api-go/internal/reply"
+	"github.com/akiijauto/kuchikomi-ai-api-go/internal/store"
 )
 
 // Config はサーバの設定。すべて環境変数から来る(cmd/api/main.go で読む)。

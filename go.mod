@@ -1,4 +1,4 @@
-module github.com/akiijauto/kuchikomi-ai-multi-stack/api-go
+module github.com/akiijauto/kuchikomi-ai-api-go
 
 go 1.27
 

@@ -17,9 +17,9 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/akiijauto/kuchikomi-ai-multi-stack/api-go/internal/app"
-	"github.com/akiijauto/kuchikomi-ai-multi-stack/api-go/internal/reply"
-	"github.com/akiijauto/kuchikomi-ai-multi-stack/api-go/internal/store"
+	"github.com/akiijauto/kuchikomi-ai-api-go/internal/app"
+	"github.com/akiijauto/kuchikomi-ai-api-go/internal/reply"
+	"github.com/akiijauto/kuchikomi-ai-api-go/internal/store"
 )
 
 func main() {

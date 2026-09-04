@@ -1,0 +1,15 @@
+# 秘密情報は絶対にコミットしない
+.env
+.env.*
+!.env.example
+
+# ビルド時に取り込む（定義の正本は元リポジトリ kuchikomi-ai-multi-stack）
+db/bootstrap/*.sql
+
+# ビルド成果物
+/api
+*.exe
+
+# OS・エディタ
+.DS_Store
+Thumbs.db
