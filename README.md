@@ -219,3 +219,6 @@ docker run --rm -p 8080:8080 -e DATABASE_URL=... -e SUPABASE_JWT_SECRET=... kuch
 ## ライセンス
 
 MIT License（[LICENSE](LICENSE)）
+
+## JSON ratingの型検証（PDCA-300-001 cycle060）
+元のJSON型も確認し、文字列の数字を整数として受け入れないよう修正。`go test ./internal/app -run "TestPDCA|TestValidReview"`で関連検査を実行できます。ローカルはGOPROXY/GOSUMDB off・既存Goとcache、メモリ内handler/単体検査のみ。固定5leafは旧5失敗→新5成功、既存unit＋今回固定した正常JSON型境界を含む関連23成功・skip0。DB試験を実施したとは扱いません。要件定義.md/振り返り.md参照。
