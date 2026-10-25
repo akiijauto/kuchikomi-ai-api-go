@@ -1,6 +1,7 @@
 package app
 
 import (
+	"bytes"
 	"encoding/json"
 	"errors"
 	"io"
@@ -29,6 +30,29 @@ type generateRequest struct {
 		ReviewText string      `json:"reviewText"`
 		Rating     json.Number `json:"rating"`
 	} `json:"review"`
+}
+
+func (r *generateRequest) UnmarshalJSON(data []byte) error {
+	// json.Number accepts quoted numbers too; preserve the original JSON type.
+	type requestValue generateRequest
+	var value requestValue
+	if err := json.Unmarshal(data, &value); err != nil {
+		return err
+	}
+	var raw struct {
+		Review struct {
+			Rating json.RawMessage `json:"rating"`
+		} `json:"review"`
+	}
+	if err := json.Unmarshal(data, &raw); err != nil {
+		return err
+	}
+	rating := bytes.TrimSpace(raw.Review.Rating)
+	if len(rating) > 0 && rating[0] == '"' {
+		return errors.New("rating must be a JSON number")
+	}
+	*r = generateRequest(value)
+	return nil
 }
 
 type usageBody struct {
@@ -129,8 +153,8 @@ func validReview(req generateRequest) (int, bool) {
 	if n < 5 || n > 2000 {
 		return 0, false
 	}
-	// json.Number をそのまま整数として読む。"5.0" や "5" という文字列は
-	// ここで弾かれ、Ruby版(Integerであることを要求)と同じ結果になる。
+	// UnmarshalJSON で文字列を拒否し、ここでは数値表記が整数かを確かめる。
+	// 5.0 や 5e0 も弾き、Ruby版(Integerであることを要求)と揃える。
 	rating, err := strconv.Atoi(req.Review.Rating.String())
 	if err != nil || rating < 1 || rating > 5 {
 		return 0, false
